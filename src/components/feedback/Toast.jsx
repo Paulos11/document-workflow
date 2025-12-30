@@ -10,7 +10,7 @@ export default function Toast({ message, type = 'info', isVisible, onClose }) {
 
   return (
     <div className="fixed bottom-4 right-4 z-50 animate-slide-up">
-      <div className={`${types[type]} px-6 py-4 rounded-lg shadow-large flex items-center gap-3 min-w-[300px]`}>
+      <div className={`${types[type]} px-6 py-4 rounded-sm shadow-large flex items-center gap-3 min-w-[300px]`}>
         <span className="text-body flex-1">{message}</span>
         <button onClick={onClose} className="hover:opacity-70 transition-opacity">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

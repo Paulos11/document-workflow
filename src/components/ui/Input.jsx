@@ -25,12 +25,14 @@ export default function Input({
         disabled={disabled}
         required={required}
         className={`
-          px-3 py-2 text-body
-          bg-neutral-surface
-          border rounded
-          focus:outline-none focus:ring-2 focus:ring-brand-primary
+          px-3 py-2.5 text-body
+          bg-white
+          border rounded-md
+          shadow-sm
+          focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary/80
           disabled:bg-neutral-subtle disabled:cursor-not-allowed
-          ${error ? 'border-status-error' : 'border-neutral-border'}
+          transition-all duration-200 ease-in-out
+          ${error ? 'border-status-error focus:ring-status-error/20 focus:border-status-error' : 'border-neutral-border hover:border-neutral-border-strong'}
         `}
       />
       {error && <span className="text-caption text-status-error">{error}</span>}

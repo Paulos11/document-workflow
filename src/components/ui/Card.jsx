@@ -1,13 +1,27 @@
-export default function Card({ children, className = '', hover = false }) {
+export default function Card({
+  children,
+  className = '',
+  hover = false,
+  padding = 'default', // 'none' | 'small' | 'default' | 'large'
+  noBorder = false,
+  noShadow = false
+}) {
+  const paddingClasses = {
+    none: '',
+    small: 'p-4',
+    default: 'p-5',
+    large: 'p-6'
+  };
+
   return (
     <div
       className={`
-        bg-neutral-surface
-        border border-neutral-border
+        bg-white
         rounded-lg
-        shadow-medium
-        p-6
-        ${hover ? 'hover:bg-neutral-surface-hover hover:border-neutral-border-strong transition-colors cursor-pointer' : ''}
+        ${!noBorder ? 'border border-neutral-border' : ''}
+        ${!noShadow ? 'shadow-small' : ''}
+        ${hover ? 'hover:shadow-md transition-shadow duration-200 cursor-pointer' : ''}
+        ${paddingClasses[padding]}
         ${className}
       `}
     >

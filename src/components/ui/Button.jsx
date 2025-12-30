@@ -1,5 +1,5 @@
 export default function Button({ children, variant = 'primary', size = 'medium', onClick, disabled, className = '' }) {
-  const baseStyles = 'rounded font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
+  const baseStyles = 'rounded-md font-medium shadow-sm transition-all active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-1';
 
   const variants = {
     primary: 'bg-brand-primary hover:bg-brand-primary-hover text-white focus:ring-brand-primary',

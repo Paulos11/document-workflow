@@ -12,9 +12,10 @@ export default function Badge({ children, variant = 'default', className = '' })
     <span
       className={`
         inline-flex items-center
-        px-2.5 py-0.5
-        rounded
-        text-caption-caps
+        px-2 py-0.5
+        rounded-[1px]
+        border border-transparent
+        text-[10px] leading-3 uppercase tracking-wider font-bold
         ${variants[variant]}
         ${className}
       `}

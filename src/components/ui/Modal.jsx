@@ -4,7 +4,7 @@ export default function Modal({ isOpen, onClose, title, children, footer }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="absolute inset-0 bg-text-high/50" onClick={onClose} />
-      <div className="relative bg-neutral-surface rounded-lg shadow-large max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
+      <div className="relative bg-neutral-surface rounded-[1px] shadow-large max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
         <div className="flex items-center justify-between p-6 border-b border-neutral-border">
           <h2 className="text-h2 text-text-high">{title}</h2>
           <button
