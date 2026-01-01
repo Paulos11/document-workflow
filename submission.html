@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Workflow - Submission</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            font-size: 15px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #0E64BC;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem;
+            color: #0E64BC;
+            border-bottom: 2px solid #0E64BC;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.5rem;
+            color: #444;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            margin: 0.5rem 0 1rem 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: #0E64BC;
+            text-decoration: none;
+            border-bottom: 1px solid #0E64BC;
+        }
+
+        a:hover {
+            background: #f0f7ff;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .links {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .link-item {
+            margin-bottom: 1rem;
+        }
+
+        .link-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .link-item strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            color: #444;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+        }
+
+        .screenshot-section {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+            color: #666;
+        }
+
+        .screenshot-section img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+        }
+
+        .screenshot-section p {
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Document Review & Approval Workflow</h1>
+    <div class="subtitle">Technical Assessment Submission - Paul Lakandri</div>
+
+    <!-- Quick Links -->
+    <div class="links">
+        <div class="link-item">
+            <strong>Live Demo</strong>
+            <a href="YOUR_DEPLOYED_APP_URL_HERE" target="_blank">View Live Application</a>
+        </div>
+        <div class="link-item">
+            <strong>Figma Wireframes</strong>
+            <a href="https://www.figma.com/design/2CZg7NQz6xyZLtb3a06tVR/Document-Workflow-Mid-fi-Wireframes?node-id=2-2&t=p7aLIQ7LWJgTvavf-1"
+                target="_blank">View Wireframes</a>
+        </div>
+        <div class="link-item">
+            <strong>Source Code</strong>
+            <a href="https://github.com/Paulos11/document-workflow" target="_blank">GitHub Repository</a>
+        </div>
+    </div>
+
+    <!-- What I Built -->
+    <h2>What I Built</h2>
+    <p>
+        A complete React-based system for handling employee document submissions and approvals. Think of it as
+        replacing the old "email documents back and forth" process with something actually trackable and organized.
+    </p>
+
+    <p><strong>The workflow is simple:</strong></p>
+    <ul>
+        <li>Employees upload documents (IDs, contracts, certificates, etc.) with drag-and-drop</li>
+        <li>Fill out a metadata form that adapts to the document type</li>
+        <li>Reviewers can approve or request changes (with required feedback)</li>
+        <li>If changes are needed, employees can edit everything inline and resubmit</li>
+        <li>Full audit trail shows who did what and when</li>
+    </ul>
+
+    <!-- Tech Stack -->
+    <h2>Tech Stack</h2>
+    <p>
+        React 19 • TypeScript • Tailwind CSS 4 • Vite • React Router • Context API + localStorage
+    </p>
+
+    <h2>Task Requirements ✓</h2>
+
+    <h3>Task 1: Wireframes</h3>
+    <ul>
+        <li>✓ Upload & Metadata Form (4-step wizard)</li>
+        <li>✓ Review Screen (includes edit mode for changes requested)</li>
+        <li>✓ Dashboard (employee + reviewer views)</li>
+        <li>✓ Activity Timeline</li>
+    </ul>
+
+    <h3>Task 2: React Implementation</h3>
+    <ul>
+        <li>✓ File upload with drag-and-drop (PDF, DOCX, JPG, PNG, max 10MB)</li>
+        <li>✓ Dynamic metadata forms based on document category</li>
+        <li>✓ Status banners (contextual, dismissible, accessible)</li>
+        <li>✓ 6-stage workflow (Draft → Submitted → In Review → Changes Requested → Resubmitted → Approved)</li>
+        <li>✓ Review screen with comments</li>
+        <li>✓ State management (Context + localStorage persistence)</li>
+    </ul>
+
+    <h3>README Requirements</h3>
+    <ul>
+        <li>✓ Setup instructions</li>
+        <li>✓ Assumptions (no backend, mock data, etc.)</li>
+        <li>✓ Component architecture</li>
+        <li>✓ Workflow logic notes</li>
+    </ul>
+
+    <p>I added a few things that weren't required but felt important:</p>
+    <ul>
+        <li><span class="highlight">Full inline editing</span> - When reviewers request changes, employees can edit
+            files AND metadata right on the review page (not just re-upload)</li>
+        <li><span class="highlight">Required feedback</span> - Reviewers must explain what needs changing (can't just
+            click "request changes" with no context)</li>
+        <li><span class="highlight">Activity timeline</span> - Complete audit trail of every action (marked as optional
+            in the PDF, but included it anyway)</li>
+        <li>localStorage auto-save - Everything persists across page refreshes</li>
+        <li>Role switching - Easy to demo both employee and reviewer flows</li>
+        <li>Responsive design - Works on mobile</li>
+    </ul>
+
+    <!-- How the Workflow Works -->
+    <h2>How It Works</h2>
+
+    <h3>For Employees</h3>
+    <ul>
+        <li>Pick your document category (ID, Employment, Education, Supporting)</li>
+        <li>Upload files with drag-and-drop</li>
+        <li>Fill out the metadata form (fields change based on document type)</li>
+        <li>Submit or save as draft</li>
+        <li>Get notified when reviewer takes action</li>
+        <li>If changes requested, edit everything inline and resubmit</li>
+    </ul>
+
+    <h3>For Reviewers</h3>
+    <ul>
+        <li>See all pending documents on dashboard</li>
+        <li>Open any document to review files and metadata</li>
+        <li>Add comments if needed</li>
+        <li>Approve or request changes (must provide feedback for changes)</li>
+        <li>Employee gets notified and can make updates</li>
+    </ul>
+
+    <!-- Key Features -->
+    <h2>Key Features</h2>
+
+    <h3>Smart Metadata Forms</h3>
+    <p>The form adapts to what you're uploading:</p>
+    <ul>
+        <li><strong>IDs/Passports:</strong> Expiration date, issuing authority, document number</li>
+        <li><strong>Contracts:</strong> Start/end dates, contract type</li>
+        <li><strong>Certificates:</strong> Institution, date obtained, certification type</li>
+        <li><strong>Supporting Docs:</strong> Issue date, description</li>
+    </ul>
+
+    <h3>Edit Mode (Changes Requested)</h3>
+    <p>
+        When a reviewer requests changes, the employee sees an orange "Edit Mode" banner at the top. They can:
+    </p>
+    <ul>
+        <li>Upload new files or remove existing ones</li>
+        <li>Edit metadata fields (title, description, dates, etc.)</li>
+        <li>See reviewer's feedback in comments</li>
+        <li>Click "Save Changes & Resubmit" when done</li>
+    </ul>
+
+    <h3>Activity Timeline</h3>
+    <p>Sidebar shows complete history:</p>
+    <ul>
+        <li>Who uploaded the document</li>
+        <li>All status changes with timestamps</li>
+        <li>Comments from reviewers</li>
+        <li>When it was resubmitted or approved</li>
+    </ul>
+
+    <!-- Assumptions & Limitations -->
+    <h2>Assumptions & Limitations</h2>
+    <p><strong>No backend</strong> - Everything runs in the browser. Data is stored in localStorage, not a database.
+        Files don't actually upload anywhere.</p>
+    <p><strong>No real auth</strong> - App assumes you're logged in. Role switching is just for demo purposes.</p>
+    <p><strong>Mock data</strong> - Comes with sample documents showing different workflow states.</p>
+
+    <!-- Screenshots -->
+    <h2>Screenshots</h2>
+
+    <div class="screenshot-section">
+        <p> Dashboard (Employee & Reviewer views)</p>
+        <img src="screenshots/dashboard.png" alt="Dashboard">
+    </div>
+
+    <div class="screenshot-section">
+        <p> Upload Wizard (Category, Files, Metadata, Review)</p>
+        <img src="screenshots/upload.png" alt="Upload Wizard">
+    </div>
+
+    <div class="screenshot-section">
+        <p> Review Page (Standard view)</p>
+        <img src="screenshots/review.png" alt="Review Page">
+    </div>
+
+    <div class="screenshot-section">
+        <p> Edit Mode (Changes Requested)</p>
+        <img src="screenshots/edit-mode.png" alt="Edit Mode">
+    </div>
+
+    <div class="screenshot-section">
+        <p> Request Changes Modal (Required feedback)</p>
+        <img src="screenshots/modal.png" alt="Request Changes Modal">
+    </div>
+
+    <div class="screenshot-section">
+        <p> Activity Timeline & Comments</p>
+        <img src="screenshots/timeline.png" alt="Timeline">
+    </div>
+
+    <!-- Setup -->
+    <h2>Quick Setup</h2>
+    <p>To run locally:</p>
+    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 5px; overflow-x: auto;">
+npm install
+npm run dev
+# Visit http://localhost:5173
+    </pre>
+
+    <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #ddd; text-align: center; color: #666;">
+        Built as a technical assessment • January 2026
+    </p>
+
+</body>
+
+</html>

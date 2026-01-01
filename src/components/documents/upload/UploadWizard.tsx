@@ -1,18 +1,26 @@
 import { useState, useCallback } from 'react';
-import type { DocumentCategory, DocumentType, DocumentMetadata, UploadedFile, Document } from '../../../types/document';
+import type { DocumentCategory, DocumentType, UploadedFile } from '../../../types/document';
+import type { DocumentFile, DocumentMetadata } from '../../../types/app';
+import type { DocumentStatus } from '../../../constants/statuses';
 import { DOCUMENT_CATEGORIES, getCategoryConfig, getDocumentTypeConfig } from '../../../constants/documentCategories';
 import { FileUpload } from './FileUpload';
 import { MetadataForm } from './MetadataForm';
-import Card from '../../ui/Card';
+import { Card } from '../../ui/Card';
 import { Label } from '../../ui/Label';
 import { ArrowLeft, ArrowRight, Check, FileText, Save } from 'lucide-react';
 import { cn } from '../../../lib/utils';
 
+interface DocumentData {
+    metadata: DocumentMetadata;
+    category: string;
+    documentType: string;
+    files: DocumentFile[];
+}
+
 interface UploadWizardProps {
-    onSubmit: (document: Omit<Document, 'id' | 'createdAt' | 'updatedAt'>, status?: string) => void;
+    onSubmit: (document: DocumentData, status?: DocumentStatus) => void;
     onCancel: () => void;
-    // currentUser is handled via context or prop, user passed it as prop.
-    currentUser: { name: string; role: string };
+    currentUser?: { name: string; role: string };
 }
 
 type Step = 'category' | 'upload' | 'details' | 'review';
@@ -24,7 +32,7 @@ const STEPS: { key: Step; label: string; number: number }[] = [
     { key: 'review', label: 'Review', number: 4 },
 ];
 
-export function UploadWizard({ onSubmit, onCancel, currentUser }: UploadWizardProps) {
+export function UploadWizard({ onSubmit, onCancel }: UploadWizardProps) {
     const [step, setStep] = useState<Step>('category');
     const [category, setCategory] = useState<DocumentCategory | null>(null);
     const [documentType, setDocumentType] = useState<DocumentType | null>(null);
@@ -90,37 +98,22 @@ export function UploadWizard({ onSubmit, onCancel, currentUser }: UploadWizardPr
     const handleSubmit = (isDraft = false) => {
         if (!category || !documentType || files.length === 0) return;
 
-        const document: Omit<Document, 'id' | 'createdAt' | 'updatedAt'> = {
+        const documentData: DocumentData = {
             category,
             documentType,
-            status: isDraft ? 'DRAFT' : 'SUBMITTED',
             files,
-            metadata: metadata as DocumentMetadata,
-            submittedBy: currentUser.name,
-            submittedAt: new Date(),
-            comments: [],
-            timeline: [
-                {
-                    id: crypto.randomUUID(),
-                    action: isDraft ? 'Document saved as draft' : 'Document submitted',
-                    user: currentUser.name,
-                    timestamp: new Date(),
-                    status: isDraft ? 'DRAFT' : 'SUBMITTED',
-                },
-            ],
+            metadata: metadata as DocumentMetadata
         };
 
-        onSubmit(document, isDraft ? 'Draft' : 'Submitted');
+        onSubmit(documentData, isDraft ? 'Draft' : 'Submitted');
     };
 
     return (
         <div className="space-y-4">
-            {/* Progress Steps - More Compact */}
-            <div className="relative bg-white py-4 px-4 rounded-lg border border-neutral-border shadow-small">
-                {/* Progress Line - Hidden on mobile, horizontal on desktop */}
-                <div className="hidden sm:block absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 bg-neutral-border -z-10" />
+            <div className="relative bg-white py-4 px-2 sm:px-4 rounded-lg border border-neutral-border shadow-small">
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 bg-neutral-border -z-10" />
 
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0">
+                <div className="flex flex-row items-center justify-between gap-1 sm:gap-0">
                     {STEPS.map((s, index) => {
                         const isCompleted = index < currentStepIndex;
                         const isCurrent = index === currentStepIndex;
@@ -129,27 +122,27 @@ export function UploadWizard({ onSubmit, onCancel, currentUser }: UploadWizardPr
                         return (
                             <div
                                 key={s.key}
-                                className="flex sm:flex-col items-center gap-3 sm:gap-0 bg-white sm:px-4 w-full sm:w-auto"
+                                className="flex flex-col items-center gap-1 sm:gap-0 bg-white px-1 sm:px-4"
                             >
                                 <div
                                     className={cn(
-                                        'w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 border-2',
+                                        'w-8 h-8 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-all duration-300 border-2',
                                         isCompleted && 'bg-brand-primary text-white border-brand-primary scale-100',
-                                        isCurrent && 'bg-white text-brand-primary border-brand-primary ring-4 ring-brand-primary/10 animate-pulse-subtle',
+                                        isCurrent && 'bg-white text-brand-primary border-brand-primary ring-2 sm:ring-4 ring-brand-primary/10 animate-pulse-subtle',
                                         isPending && 'bg-white text-text-muted border-neutral-border-strong scale-95'
                                     )}
                                 >
                                     {isCompleted ? (
-                                        <Check size={20} className="animate-scale-in" />
+                                        <Check size={16} className="sm:w-5 sm:h-5 animate-scale-in" />
                                     ) : (
                                         <span>{s.number}</span>
                                     )}
                                 </div>
 
-                                <div className="flex-1 sm:flex-none sm:mt-2 sm:text-center">
+                                <div className="mt-1 sm:mt-2 text-center">
                                     <span
                                         className={cn(
-                                            'text-xs sm:text-body-small font-semibold transition-colors',
+                                            'text-[10px] sm:text-body-small font-semibold transition-colors whitespace-nowrap',
                                             (isCurrent || isCompleted) ? 'text-text-high' : 'text-text-muted'
                                         )}
                                     >
@@ -162,7 +155,6 @@ export function UploadWizard({ onSubmit, onCancel, currentUser }: UploadWizardPr
                 </div>
             </div>
 
-            {/* Step Content */}
             <Card className="shadow-small border border-neutral-border">
                 <div className="p-4 border-b border-neutral-border">
                     <h2 className="text-h2 text-text-high">
@@ -180,7 +172,6 @@ export function UploadWizard({ onSubmit, onCancel, currentUser }: UploadWizardPr
                 </div>
 
                 <div className="p-4 space-y-4 min-h-[400px]">
-                    {/* Step 1: Category Selection */}
                     {step === 'category' && (
                         <div className="space-y-4">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -230,7 +221,6 @@ export function UploadWizard({ onSubmit, onCancel, currentUser }: UploadWizardPr
                         </div>
                     )}
 
-                    {/* Step 2: File Upload */}
                     {step === 'upload' && (
                         <FileUpload
                             files={files}
@@ -240,7 +230,6 @@ export function UploadWizard({ onSubmit, onCancel, currentUser }: UploadWizardPr
                         />
                     )}
 
-                    {/* Step 3: Metadata Form */}
                     {step === 'details' && category && documentType && (
                         <MetadataForm
                             category={category}
@@ -251,7 +240,6 @@ export function UploadWizard({ onSubmit, onCancel, currentUser }: UploadWizardPr
                         />
                     )}
 
-                    {/* Step 4: Review */}
                     {step === 'review' && category && documentType && categoryConfig && docTypeConfig && (
                         <div className="space-y-4">
                             <div className="grid grid-cols-2 gap-4 bg-neutral-subtle/50 p-3 rounded-lg border border-neutral-border">
@@ -282,9 +270,7 @@ export function UploadWizard({ onSubmit, onCancel, currentUser }: UploadWizardPr
                                 <div className="bg-neutral-subtle/50 rounded-lg p-3 space-y-2.5 border border-neutral-border">
                                     {Object.entries(metadata).map(([key, value]) => {
                                         if (!value) return null;
-                                        const displayValue = value instanceof Date
-                                            ? new Date(value).toLocaleDateString()
-                                            : String(value);
+                                        const displayValue = String(value);
                                         return (
                                             <div key={key} className="flex justify-between text-body-small gap-4">
                                                 <span className="text-text-muted capitalize">
@@ -301,7 +287,6 @@ export function UploadWizard({ onSubmit, onCancel, currentUser }: UploadWizardPr
                 </div>
             </Card>
 
-            {/* Navigation Buttons */}
             <div className="flex justify-between items-center pt-4">
                 <button
                     onClick={handleBack}

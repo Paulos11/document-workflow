@@ -1,6 +1,6 @@
 # Document Review & Approval Workflow
 
-A React-based document management system for handling employee document submissions and approvals. This was built as part of a technical assessment for KPMG.
+A React-based document management system for handling employee document submissions and approvals.
 
 ## Quick Start
 
@@ -148,7 +148,7 @@ Each category has specific required fields that show up in the metadata form.
 - React Router for navigation
 - Context API for state management
 
-The design uses KPMG's brand colors (#0E64BC primary blue) with a professional, clean interface.
+The design uses a professional blue color scheme (#0E64BC primary blue) with a clean interface.
 
 ## Known Limitations
 
@@ -177,13 +177,23 @@ To make this production-ready, you'd need:
 
 ## localStorage Persistence
 
-The app automatically saves all changes to browser localStorage. Check `STORAGE_README.md` for details on how this works, including:
-- What gets saved and when
-- How to reset data
-- Storage limits by browser
-- Troubleshooting
+The app automatically saves all changes to browser localStorage:
 
-Use the "Reset Data" button in the header dropdown to clear everything and reload the mock data.
+**What Gets Saved:**
+- All documents (new uploads, status changes, comments)
+- Current user and role
+- Persists across page refreshes
+
+**How to Reset:**
+- Use the "Reset Data" button in the header dropdown to clear everything and reload the mock data
+- Or manually clear browser localStorage for localhost:5173
+
+**Storage Limits:**
+- Chrome/Edge: ~10MB
+- Firefox: ~10MB
+- Safari: ~5MB
+
+The app checks if localStorage is available and falls back gracefully if disabled (e.g., in private browsing mode).
 
 ## Development Notes
 

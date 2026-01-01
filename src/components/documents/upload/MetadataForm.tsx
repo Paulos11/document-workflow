@@ -1,6 +1,7 @@
-import type { DocumentCategory, DocumentType, DocumentMetadata } from '../../../types/document';
+import type { DocumentCategory, DocumentType } from '../../../types/document';
+import type { DocumentMetadata } from '../../../types/app';
 import { getDocumentTypeConfig } from '../../../constants/documentCategories';
-import Input from '../../ui/Input';
+import { Input } from '../../ui/Input';
 import { Label } from '../../ui/Label';
 import { Textarea } from '../../ui/Textarea';
 import { AlertCircle } from 'lucide-react';
@@ -96,9 +97,6 @@ export function MetadataForm({
     const docTypeConfig = getDocumentTypeConfig(category, documentType);
     const requiredFields = docTypeConfig?.requiredFields || ['title'];
 
-    // Always show title and description, plus required fields for this doc type
-    // Make sure description is always included if desired, usually it is separate.
-    // The user logic was: fieldsToShow = ['title', 'description', ...requiredFields]
     const fieldsToShow = ['title', 'description', ...requiredFields.filter(f => f !== 'title')];
     const uniqueFields = [...new Set(fieldsToShow)];
 
@@ -111,7 +109,6 @@ export function MetadataForm({
 
     const formatDateValue = (date: Date | undefined): string => {
         if (!date) return '';
-        // Handle specific date object or string input if coming from partial state
         try {
             const d = new Date(date);
             return d.toISOString().split('T')[0];
@@ -155,7 +152,7 @@ export function MetadataForm({
                                 )}
                                 aria-invalid={!!error}
                                 aria-describedby={error ? `${fieldKey}-error` : undefined}
-                                error={!!error}
+                                error={error}
                             />
                         ) : (
                             <Input
@@ -166,7 +163,7 @@ export function MetadataForm({
                                 placeholder={config.placeholder}
                                 disabled={disabled}
                                 required={isRequired}
-                                error={!!error}
+                                error={error}
                                 className={cn(
                                     error && 'border-status-error focus:ring-status-error'
                                 )}

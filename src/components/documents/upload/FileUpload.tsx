@@ -50,7 +50,6 @@ export function FileUpload({
         }
 
         const validFiles: UploadedFile[] = [];
-        // Note: In a real app we would upload here. For now we just create the metadata object.
         for (const file of fileArray) {
             const error = validateFile(file);
             if (error) {

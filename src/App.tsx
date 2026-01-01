@@ -14,7 +14,6 @@ function App() {
 
         {/* Main Content */}
         <main className="p-4 sm:p-6 lg:p-8 max-w-[1400px] mx-auto flex-grow w-full">
-          {/* Status Banner - Shown at top of page */}
           {statusBanner && (
             <StatusBanner
               status={statusBanner.status}
@@ -34,7 +33,6 @@ function App() {
 
         <Footer />
 
-        {/* Toast Notification */}
         {notification && (
           <Toast
             message={notification.message}
