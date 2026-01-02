@@ -248,32 +248,41 @@ export default function FilePreview({ files = [], editable = false, onFilesChang
               </button>
             </div>
 
-            <div className="flex-1 overflow-auto p-6 bg-neutral-subtle/30">
+            <div className="flex-1 overflow-auto bg-neutral-subtle/30">
               {previewFile.type === 'application/pdf' ? (
-                <div className="bg-white rounded-lg shadow-sm p-8 max-w-3xl mx-auto">
-                  <div className="text-center py-12">
-                    <FileText className="w-16 h-16 text-brand-primary mx-auto mb-4" />
-                    <h4 className="text-lg font-semibold text-text-high mb-2">PDF Document</h4>
-                    <p className="text-body text-text-muted mb-6">
-                      {previewFile.name}
-                    </p>
-                    <div className="bg-neutral-subtle/50 rounded-md p-6 text-left mb-6">
-                      <p className="text-body-small text-text-medium mb-3">
-                        PDF Document Preview
-                      </p>
-                      <ul className="text-body-small text-text-low space-y-2">
-                        <li>• File name: {previewFile.name}</li>
-                        <li>• File size: {formatFileSize(previewFile.size)}</li>
-                        <li>• File type: {previewFile.type}</li>
-                      </ul>
-                      <p className="text-caption text-text-muted mt-4">
-                        PDF viewer integration with libraries like PDF.js or react-pdf can be added for full document preview.
-                      </p>
+                <div className="h-full flex flex-col p-6">
+                  <div className="bg-white rounded-lg shadow-lg h-full min-h-[600px] overflow-hidden">
+                    {/* PDF Preview - Using preview.pdf from public folder */}
+                    <iframe
+                      src="/preview.pdf"
+                      className="w-full h-full border-0"
+                      title={`Preview of ${previewFile.name}`}
+                      style={{ minHeight: '600px' }}
+                    />
+
+                      {/* Alternative: Show document info if iframe doesn't load */}
+                      <div className="hidden" id="pdf-fallback">
+                        <div className="text-center py-12 px-6">
+                          <FileText className="w-16 h-16 text-brand-primary mx-auto mb-4" />
+                          <h4 className="text-lg font-semibold text-text-high mb-2">PDF Document</h4>
+                          <p className="text-body text-text-muted mb-6">
+                            {previewFile.name}
+                          </p>
+                          <div className="bg-neutral-subtle/50 rounded-md p-6 text-left mb-6 max-w-md mx-auto">
+                            <p className="text-body-small text-text-medium mb-3">
+                              Document Information
+                            </p>
+                            <ul className="text-body-small text-text-low space-y-2">
+                              <li>• File name: {previewFile.name}</li>
+                              <li>• File size: {formatFileSize(previewFile.size)}</li>
+                              <li>• File type: {previewFile.type}</li>
+                            </ul>
+                            <p className="text-caption text-text-muted mt-4">
+                              Note: This is a demo preview. In production, actual uploaded PDFs would be displayed here.
+                            </p>
+                          </div>
+                        </div>
                     </div>
-                    <Button onClick={() => handleDownload(previewFile)}>
-                      <Download className="w-4 h-4" />
-                      Download PDF
-                    </Button>
                   </div>
                 </div>
               ) : (

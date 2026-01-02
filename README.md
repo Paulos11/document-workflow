@@ -2,6 +2,12 @@
 
 A React-based document management system for handling employee document submissions and approvals.
 
+## Wireframes
+
+View the Figma wireframes here: [Document Workflow Mid-fi Wireframes](https://www.figma.com/design/2CZg7NQz6xyZLtb3a06tVR/Document-Workflow-Mid-fi-Wireframes?node-id=2-2&t=YNezRXYwCMAlFdiM-1)
+
+Screenshots of the implemented UI are available in the `/screenshots` folder.
+
 ## Quick Start
 
 You'll need Node.js 18 or higher installed.
@@ -54,8 +60,8 @@ This is a frontend prototype with some limitations:
 
 **Files**
 - Max 5 files per submission, 10MB each
-- No PDF preview implemented
-- Downloads are simulated
+- PDF preview implemented (displays sample PDF in modal using native browser PDF viewer)
+- File downloads are simulated (no actual file storage)
 
 ## Project Structure
 
