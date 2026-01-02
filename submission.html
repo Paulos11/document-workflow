@@ -25,14 +25,14 @@
         h1 {
             font-size: 2rem;
             margin-bottom: 0.5rem;
-            color: #0E64BC;
+            color: #1a1a1a;
         }
 
         h2 {
             font-size: 1.3rem;
             margin: 2rem 0 1rem;
-            color: #0E64BC;
-            border-bottom: 2px solid #0E64BC;
+            color: #2a2a2a;
+            border-bottom: 2px solid #666;
             padding-bottom: 0.5rem;
         }
 
@@ -55,13 +55,13 @@
         }
 
         a {
-            color: #0E64BC;
+            color: #333;
             text-decoration: none;
-            border-bottom: 1px solid #0E64BC;
+            border-bottom: 1px solid #666;
         }
 
         a:hover {
-            background: #f0f7ff;
+            background: #f5f5f5;
         }
 
         .subtitle {
@@ -74,20 +74,21 @@
             padding: 1.5rem;
             border-radius: 8px;
             margin: 1.5rem 0;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
 
         .link-item {
-            margin-bottom: 1rem;
-        }
-
-        .link-item:last-child {
-            margin-bottom: 0;
+            flex: 1;
+            min-width: 200px;
         }
 
         .link-item strong {
             display: block;
             margin-bottom: 0.3rem;
             color: #444;
+            font-size: 0.9rem;
         }
 
         .highlight {

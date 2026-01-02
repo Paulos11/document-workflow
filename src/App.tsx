@@ -12,7 +12,6 @@ function App() {
       <div className="min-h-screen bg-neutral-background font-sans flex flex-col">
         <Header />
 
-        {/* Main Content */}
         <main className="p-4 sm:p-6 lg:p-8 max-w-[1400px] mx-auto flex-grow w-full">
           {statusBanner && (
             <StatusBanner

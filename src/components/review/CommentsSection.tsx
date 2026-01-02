@@ -81,7 +81,7 @@ export default function CommentsSection({ comments = [], onAddComment }: Comment
             </div>
             <div className="flex-1">
               <textarea
-                placeholder="Share your feedback... (Ctrl/Cmd + Enter to submit)"
+                placeholder="Share your feedback..."
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 onKeyDown={handleKeyDown}

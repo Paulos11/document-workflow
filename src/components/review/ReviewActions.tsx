@@ -106,8 +106,8 @@ export default function ReviewActions({ onAction, currentRole }: ReviewActionsPr
               onKeyDown={handleKeyDown}
               placeholder={
                 actionType === 'approve'
-                  ? 'Add any notes or feedback... (Ctrl/Cmd + Enter to submit)'
-                  : 'Please explain what changes are needed... (Ctrl/Cmd + Enter to submit)'
+                  ? 'Add any notes...'
+                  : 'What needs to be changed?'
               }
               className="w-full px-3 py-2 border border-neutral-border rounded-md text-body-small focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary min-h-[80px] resize-none"
               maxLength={500}
@@ -121,7 +121,7 @@ export default function ReviewActions({ onAction, currentRole }: ReviewActionsPr
           </div>
           {actionType === 'request-changes' && feedback.trim().length === 0 && (
             <p className="text-caption text-orange-600">
-              Please provide feedback so the employee knows what to change
+              Let them know what needs fixing
             </p>
           )}
         </div>

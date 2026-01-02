@@ -87,7 +87,7 @@ export default function Header() {
 
                   <button
                     onClick={() => {
-                      if (window.confirm('Reset all data to defaults? This will clear your localStorage.')) {
+                      if (window.confirm('Reset everything back to demo data?')) {
                         resetToDefaults();
                         setIsDropdownOpen(false);
                       }

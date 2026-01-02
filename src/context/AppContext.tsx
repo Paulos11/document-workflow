@@ -126,8 +126,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     setStatusBanner({ status: status });
 
     const notificationMessage = isDraft
-      ? 'Document saved as draft successfully!'
-      : 'Document uploaded successfully!';
+      ? 'Saved as draft'
+      : 'Document uploaded';
     showNotification(notificationMessage, 'success');
     return newDocument;
   };
@@ -257,7 +257,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       }
       return doc;
     }));
-    showNotification('Document updated successfully!', 'success');
+    showNotification('Document updated', 'success');
   };
 
   const resubmitDocument = (documentId: string, updatedData: Partial<AppDocument>, feedback: string = 'Document updated and resubmitted') => {

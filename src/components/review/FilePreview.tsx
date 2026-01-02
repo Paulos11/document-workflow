@@ -251,7 +251,6 @@ export default function FilePreview({ files = [], editable = false, onFilesChang
               {previewFile.type === 'application/pdf' ? (
                 <div className="h-full flex flex-col p-6">
                   <div className="bg-white rounded-lg shadow-lg h-full min-h-[600px] overflow-hidden">
-                    {/* PDF Preview - Using preview.pdf from public folder */}
                     <iframe
                       src="/preview.pdf"
                       className="w-full h-full border-0"
@@ -259,7 +258,6 @@ export default function FilePreview({ files = [], editable = false, onFilesChang
                       style={{ minHeight: '600px' }}
                     />
 
-                    {/* Alternative: Show document info if iframe doesn't load */}
                     <div className="hidden" id="pdf-fallback">
                       <div className="text-center py-12 px-6">
                         <FileText className="w-16 h-16 text-brand-primary mx-auto mb-4" />
@@ -277,7 +275,7 @@ export default function FilePreview({ files = [], editable = false, onFilesChang
                             <li>• File type: {previewFile.type}</li>
                           </ul>
                           <p className="text-caption text-text-muted mt-4">
-                            Note: This is a demo preview. In production, actual uploaded PDFs would be displayed here.
+                            Demo preview only
                           </p>
                         </div>
                       </div>
