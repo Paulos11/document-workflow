@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useRef } from 'react';
+import { createContext, useState, useEffect, useRef } from 'react';
 import type { ReactNode } from 'react';
 import { MOCK_DOCUMENTS, getCurrentUser } from '../data';
 import { STATUS_BANNERS, canTransitionTo } from '../constants';
@@ -11,7 +11,7 @@ import {
 } from '../utils/storage';
 import type { AppDocument, User, Notification, StatusBanner, DocumentMetadata } from '../types/app';
 
-interface AppContextValue {
+export interface AppContextValue {
   documents: AppDocument[];
   currentUser: User;
   currentRole: string;
@@ -31,15 +31,7 @@ interface AppContextValue {
   resetToDefaults: () => void;
 }
 
-const AppContext = createContext<AppContextValue | undefined>(undefined);
-
-export const useApp = (): AppContextValue => {
-  const context = useContext(AppContext);
-  if (!context) {
-    throw new Error('useApp must be used within AppProvider');
-  }
-  return context;
-};
+export const AppContext = createContext<AppContextValue | undefined>(undefined);
 
 interface AppProviderProps {
   children: ReactNode;

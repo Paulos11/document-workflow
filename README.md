@@ -72,6 +72,7 @@ src/
 │   └── timeline/              # Activity timeline
 ├── pages/                     # DashboardPage, UploadPage, ReviewPage
 ├── context/                   # AppContext for global state
+├── hooks/                     # Custom React hooks (useApp)
 ├── constants/                 # Document categories, statuses, file types
 ├── data/                      # Mock documents and users
 ├── utils/                     # Formatters, validators, storage helpers
