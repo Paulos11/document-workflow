@@ -83,6 +83,7 @@ export default function CommentsSection({ comments = [], onAddComment }: Comment
               <textarea
                 placeholder="Share your feedback..."
                 value={newComment}
+
                 onChange={(e) => setNewComment(e.target.value)}
                 onKeyDown={handleKeyDown}
                 className="w-full px-3 py-2 border border-neutral-border rounded-md text-body-small focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary min-h-[70px] resize-none"
