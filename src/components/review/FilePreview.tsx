@@ -1,4 +1,4 @@
-import { Card, Badge, Button } from '../ui';
+import { Card, Badge } from '../ui';
 import { FileText, Download, Eye, Upload, X, Edit3 } from 'lucide-react';
 import type { DocumentFile } from '../../types/app';
 import { useState } from 'react';
@@ -126,11 +126,10 @@ export default function FilePreview({ files = [], editable = false, onFilesChang
               onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
               onDragLeave={() => setIsDragging(false)}
               onDrop={handleDrop}
-              className={`border-2 border-dashed rounded-md p-6 text-center transition-colors ${
-                isDragging
-                  ? 'border-brand-primary bg-brand-primary/5'
-                  : 'border-neutral-border hover:border-brand-primary/50'
-              }`}
+              className={`border-2 border-dashed rounded-md p-6 text-center transition-colors ${isDragging
+                ? 'border-brand-primary bg-brand-primary/5'
+                : 'border-neutral-border hover:border-brand-primary/50'
+                }`}
             >
               <div className="flex flex-col items-center gap-2">
                 <div className="w-12 h-12 bg-brand-primary/10 rounded-full flex items-center justify-center">
@@ -260,28 +259,28 @@ export default function FilePreview({ files = [], editable = false, onFilesChang
                       style={{ minHeight: '600px' }}
                     />
 
-                      {/* Alternative: Show document info if iframe doesn't load */}
-                      <div className="hidden" id="pdf-fallback">
-                        <div className="text-center py-12 px-6">
-                          <FileText className="w-16 h-16 text-brand-primary mx-auto mb-4" />
-                          <h4 className="text-lg font-semibold text-text-high mb-2">PDF Document</h4>
-                          <p className="text-body text-text-muted mb-6">
-                            {previewFile.name}
+                    {/* Alternative: Show document info if iframe doesn't load */}
+                    <div className="hidden" id="pdf-fallback">
+                      <div className="text-center py-12 px-6">
+                        <FileText className="w-16 h-16 text-brand-primary mx-auto mb-4" />
+                        <h4 className="text-lg font-semibold text-text-high mb-2">PDF Document</h4>
+                        <p className="text-body text-text-muted mb-6">
+                          {previewFile.name}
+                        </p>
+                        <div className="bg-neutral-subtle/50 rounded-md p-6 text-left mb-6 max-w-md mx-auto">
+                          <p className="text-body-small text-text-medium mb-3">
+                            Document Information
                           </p>
-                          <div className="bg-neutral-subtle/50 rounded-md p-6 text-left mb-6 max-w-md mx-auto">
-                            <p className="text-body-small text-text-medium mb-3">
-                              Document Information
-                            </p>
-                            <ul className="text-body-small text-text-low space-y-2">
-                              <li>• File name: {previewFile.name}</li>
-                              <li>• File size: {formatFileSize(previewFile.size)}</li>
-                              <li>• File type: {previewFile.type}</li>
-                            </ul>
-                            <p className="text-caption text-text-muted mt-4">
-                              Note: This is a demo preview. In production, actual uploaded PDFs would be displayed here.
-                            </p>
-                          </div>
+                          <ul className="text-body-small text-text-low space-y-2">
+                            <li>• File name: {previewFile.name}</li>
+                            <li>• File size: {formatFileSize(previewFile.size)}</li>
+                            <li>• File type: {previewFile.type}</li>
+                          </ul>
+                          <p className="text-caption text-text-muted mt-4">
+                            Note: This is a demo preview. In production, actual uploaded PDFs would be displayed here.
+                          </p>
                         </div>
+                      </div>
                     </div>
                   </div>
                 </div>
