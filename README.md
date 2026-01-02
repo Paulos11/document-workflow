@@ -19,11 +19,6 @@ npm run dev
 
 Open http://localhost:5173 in your browser.
 
-For production build:
-```bash
-npm run build
-```
-
 ## What This Does
 
 This module handles the full lifecycle of employee document submissions - from upload through review and approval. It replaces the old process of emailing documents back and forth or using shared folders.
@@ -154,33 +149,6 @@ Each category has specific required fields that show up in the metadata form.
 - React Router for navigation
 - Context API for state management
 
-The design uses a professional blue color scheme (#0E64BC primary blue) with a clean interface.
-
-## Known Limitations
-
-- No backend means data only lives in your browser
-- No real-time updates between users
-- No actual file storage or processing
-- Search and filtering not implemented
-- No pagination (loads all documents at once)
-- Email notifications are just in-app banners
-
-## What Would Be Needed for Production
-
-To make this production-ready, you'd need:
-
-- REST or GraphQL API for data operations
-- File upload to cloud storage (S3, Azure Blob, etc.)
-- Real authentication and authorization
-- Database for documents and user data
-- Email notifications for status changes
-- WebSockets or polling for real-time updates
-- Search, filtering, and pagination
-- Proper error handling and logging
-- Document versioning
-- Audit log exports
-- Tests (unit, integration, E2E)
-
 ## localStorage Persistence
 
 The app automatically saves all changes to browser localStorage:
@@ -191,39 +159,8 @@ The app automatically saves all changes to browser localStorage:
 - Persists across page refreshes
 
 **How to Reset:**
-- Use the "Reset Data" button in the header dropdown to clear everything and reload the mock data
-- Or manually clear browser localStorage for localhost:5173
-
-**Storage Limits:**
-- Chrome/Edge: ~10MB
-- Firefox: ~10MB
-- Safari: ~5MB
-
-The app checks if localStorage is available and falls back gracefully if disabled (e.g., in private browsing mode).
-
-## Development Notes
-
-The code follows these patterns:
-- Functional components with hooks, no classes
-- Props destructured in function signatures
-- Minimal comments (code should be self-documenting)
-- Composition over complex component hierarchies
-- Controlled form components
-
-File naming:
-- Components: PascalCase (`DocumentCard.jsx`)
-- Utilities: camelCase (`formatters.js`)
-- Constants: UPPER_SNAKE_CASE in the code
-
-## Browser Support
-
-Works on:
-- Chrome/Edge 90+
-- Firefox 88+
-- Safari 14+
-
-Designed mobile-first, so it works on phones and tablets.
+- Use the "Reset Data" button in the header dropdown
 
 ---
 
-This was built as a technical assessment demonstrating React development, UI/UX design, and workflow implementation.
+Built as a technical assessment for Front-End Developer position.
