@@ -119,6 +119,37 @@ Reviewers can:
 - Request changes with feedback
 - Approve documents
 
+## Security & Scalability
+
+**Security Considerations**
+
+For production deployment:
+- Add authentication and session management (JWT, OAuth)
+- Implement role-based access control (RBAC) on backend
+- Validate file types and scan uploads for malware
+- Use HTTPS and secure file storage (S3, Azure Blob)
+- Sanitize user inputs to prevent XSS attacks
+- Add CSRF protection and rate limiting
+
+**Permissions**
+
+Current prototype uses basic role switching. Production should:
+- Enforce permissions at API level, not just UI
+- Implement granular permissions (view, edit, approve, admin)
+- Add department-level access controls
+- Log all permission changes for audit trail
+
+**Scalability**
+
+To scale this application:
+- Move state management to Redux or Zustand for larger teams
+- Implement backend API (Node.js, Python, .NET)
+- Use database for persistence (PostgreSQL, MongoDB)
+- Add file chunking for large uploads (>100MB)
+- Implement pagination and virtualization for large document lists
+- Use CDN for static assets and caching strategies
+- Consider microservices for document processing (OCR, conversion)
+
 ## Document Categories
 
 **Identification**
